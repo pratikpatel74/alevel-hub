@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pratik's Study Hubs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Same look as the subject hubs: dark-first, gold brand accent, one colour per subject. */
+:root {
+  color-scheme: dark;
+  --bg:#09090f; --surface:#111118; --card:#16161e; --card-hover:#1c1c26;
+  --border:#2a2a38; --border-hi:#3d3d52; --text:#f0efff; --muted:#8b8aab; --dim:#6a6985;
+  --gold:#e8b84b; --gold-dim:#a8832a; --gold-bg:rgba(232,184,75,0.08);
+  --bio:#34d399; --chem:#38bdf8; --maths:#a78bfa; --fin:#fbbf24;
+  --on-accent:#0b0b12;
+  --font:'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    color-scheme: light;
+    --bg:#f5f4f0; --surface:#eeede8; --card:#ffffff; --card-hover:#fafaf8;
+    --border:#dddbd4; --border-hi:#c8c5bc; --text:#1a1814; --muted:#635f54; --dim:#8a867a;
+    --gold:#9a6f12; --gold-dim:#c9982c; --gold-bg:rgba(184,134,26,0.08);
+    --bio:#047857; --chem:#0369a1; --maths:#6d28d9; --fin:#b45309; --on-accent:#ffffff;
+  }
+}
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg:#f5f4f0; --surface:#eeede8; --card:#ffffff; --card-hover:#fafaf8;
+  --border:#dddbd4; --border-hi:#c8c5bc; --text:#1a1814; --muted:#635f54; --dim:#8a867a;
+  --gold:#9a6f12; --gold-dim:#c9982c; --gold-bg:rgba(184,134,26,0.08);
+  --bio:#047857; --chem:#0369a1; --maths:#6d28d9; --fin:#b45309; --on-accent:#ffffff;
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:var(--font); background:var(--bg); color:var(--text); line-height:1.5; min-height:100vh;
+  padding-left:max(16px, env(safe-area-inset-left,0px)); padding-right:max(16px, env(safe-area-inset-right,0px)); }
+a { color:inherit; }
+:focus-visible { outline:2px solid var(--gold); outline-offset:3px; }
+.top { max-width:900px; margin:0 auto; display:flex; justify-content:flex-end; padding-top:16px; }
+.icon-btn { background:var(--surface); border:1px solid var(--border); border-radius:8px; width:34px; height:34px; cursor:pointer; color:var(--muted); display:flex; align-items:center; justify-content:center; }
+.icon-btn:hover { color:var(--text); border-color:var(--border-hi); }
+.icon-btn svg { width:16px; height:16px; }
+.hero { text-align:center; padding-block:40px 44px; }
+.eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:0.7rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); margin-bottom:18px; }
+.eyebrow::before, .eyebrow::after { content:''; width:28px; height:1px; background:var(--gold-dim); }
+h1 { font-size:clamp(2.2rem, 7vw, 3.6rem); font-weight:800; letter-spacing:-0.03em; line-height:1.05; text-wrap:balance; }
+h1 em { color:var(--gold); font-style:italic; }
+.sub { color:var(--muted); max-width:460px; margin:14px auto 0; }
+.grid { max-width:900px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fill, minmax(min(100%, 400px), 1fr)); gap:16px; padding-bottom:56px; }
+.card { --acc:var(--gold); display:flex; flex-direction:column; text-decoration:none; background:var(--card); border:1px solid var(--border); border-radius:14px; overflow:hidden; transition:transform .2s, border-color .2s, background .2s; }
+.card:hover { transform:translateY(-2px); border-color:var(--border-hi); background:var(--card-hover); }
+.card .bar { height:3px; background:var(--acc); }
+.body { padding:22px; display:flex; flex-direction:column; gap:12px; flex:1; }
+.head { display:flex; align-items:center; gap:14px; }
+.mark { width:46px; height:46px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1rem; color:var(--acc); background:color-mix(in srgb, var(--acc) 13%, transparent); border:1px solid var(--border); flex-shrink:0; }
+.board { font-size:0.66rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--dim); }
+.name { font-size:1.2rem; font-weight:800; letter-spacing:-0.01em; }
+.desc { color:var(--muted); font-size:0.88rem; flex:1; }
+.stats { display:flex; flex-wrap:wrap; gap:8px; }
+.chip { font-size:0.74rem; font-weight:600; padding:4px 10px; border-radius:999px; background:var(--surface); border:1px solid var(--border); color:var(--muted); font-variant-numeric:tabular-nums; }
+.go { margin-top:4px; align-self:flex-start; background:var(--acc); color:var(--on-accent); font-weight:700; font-size:0.84rem; padding:9px 16px; border-radius:9px; }
+.bio { --acc:var(--bio); } .chem { --acc:var(--chem); } .maths { --acc:var(--maths); } .fin { --acc:var(--fin); }
+footer { text-align:center; color:var(--dim); font-size:0.76rem; border-top:1px solid var(--border); max-width:900px; margin:0 auto; padding-block:24px 40px; }
+@media (prefers-reduced-motion: reduce) { * { transition:none !important; } }
+</style>
+</head>
+<body>
+<div class="top"><button class="icon-btn" id="theme" aria-label="Switch light or dark theme"></button></div>
+<header class="hero">
+  <div class="eyebrow">A-level revision</div>
+  <h1>Study <em>Hubs</em></h1>
+  <p class="sub">Topic summaries and quizzes for every subject. Each quiz draws 10 questions from a pool of 22.</p>
+</header>
+<main class="grid">
+  <a class="card bio" href="https://aqa-alevel-biology.netlify.app/">
+    <div class="bar"></div><div class="body">
+      <div class="head"><div class="mark">Bi</div><div><div class="board">AQA · 7402</div><div class="name">Biology</div></div></div>
+      <p class="desc">Biological molecules to gene expression, with all 12 required practicals.</p>
+      <div class="stats"><span class="chip">31 topics</span><span class="chip">682 questions</span><span class="chip">12 practicals</span></div>
+      <span class="go">Open Biology →</span>
+    </div></a>
+  <a class="card chem" href="https://aqa-alevel-chemistry.netlify.app/">
+    <div class="bar"></div><div class="body">
+      <div class="head"><div class="mark">Ch</div><div><div class="board">AQA · 7405</div><div class="name">Chemistry</div></div></div>
+      <p class="desc">Physical, inorganic and organic chemistry, with all 12 required practicals.</p>
+      <div class="stats"><span class="chip">34 topics</span><span class="chip">748 questions</span><span class="chip">12 practicals</span></div>
+      <span class="go">Open Chemistry →</span>
+    </div></a>
+  <a class="card maths" href="https://aqa-alevel-maths.netlify.app/">
+    <div class="bar"></div><div class="body">
+      <div class="head"><div class="mark">Ma</div><div><div class="board">AQA · 7357</div><div class="name">Maths</div></div></div>
+      <p class="desc">Pure, statistics and mechanics, with worked examples in every topic.</p>
+      <div class="stats"><span class="chip">35 topics</span><span class="chip">770 questions</span><span class="chip">Worked examples</span></div>
+      <span class="go">Open Maths →</span>
+    </div></a>
+  <a class="card fin" href="https://alevel-finance-hub.netlify.app/">
+    <div class="bar"></div><div class="body">
+      <div class="head"><div class="mark">Fi</div><div><div class="board">LIBF · Unit 1</div><div class="name">Finance</div></div></div>
+      <p class="desc">Financial services: money, life cycle, savings and borrowing products.</p>
+      <div class="stats"><span class="chip">6 topics</span><span class="chip">132 questions</span><span class="chip">Source PDFs</span></div>
+      <span class="go">Open Finance →</span>
+    </div></a>
+</main>
+<footer>Each subject keeps its own quiz scores in this browser.</footer>
+<script>
+const SUN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
+const MOON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
+const root = document.documentElement, btn = document.getElementById('theme');
+try { const t = localStorage.getItem('hub_theme'); if (t) root.setAttribute('data-theme', t); } catch (e) {}
+const isDark = () => { const t = root.getAttribute('data-theme'); return t ? t === 'dark' : !matchMedia('(prefers-color-scheme: light)').matches; };
+const paint = () => { btn.innerHTML = isDark() ? SUN : MOON; };
+btn.onclick = () => { const n = isDark() ? 'light' : 'dark'; root.setAttribute('data-theme', n); try { localStorage.setItem('hub_theme', n); } catch (e) {} paint(); };
+paint();
+</script>
+</body>
+</html>
