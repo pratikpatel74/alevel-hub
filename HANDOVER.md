@@ -77,6 +77,8 @@ questions:
 - **Chemistry:** a generic version. It reads subject, code, prefix and texts from `site.yaml` `meta`, and the plan from `site.yaml`.
 - **Maths:** an extended version of the generic template. It supports `badge` (spec letters on cards), top-level `examples` (worked examples), `meta.secColors`, `meta.banner` and `meta.heroSub`. Section codes are `P`, `S` and `M`.
 
+Every template must start with `<!doctype html>` and a `<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">` tag. The Claude artifact previews add that tag automatically, but Netlify serves the file as it is. Without the tag, phones render the page at desktop width, so cards don't stack (fixed 16 Oct).
+
 On the hub page, every hub's top bar has a "← All subjects" link to the landing page.
 
 ### Quiz features (all hubs)
