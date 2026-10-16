@@ -110,7 +110,7 @@ After deploying, verify the live URL with WebFetch.
 ## Current status (15 Oct 2026, 20:30)
 
 - **Live:** all four hubs and the landing page are deployed and verified.
-- **Waiting for Pratik to push:** the "← All subjects" link on the Biology, Chemistry and Maths hubs, and a Maths hero-text fix. The hero text previously mentioned "required practicals"; it now mentions worked examples. Files are already updated on his Mac. He needs to run `git add . && git commit -m "Add All subjects link" && git push` in each of the three folders.
+- **Deployed 15 Oct, 20:26:** the "← All subjects" link on the Biology, Chemistry and Maths hubs, the Maths hero-text fix (it now mentions worked examples instead of required practicals), and this handover file.
 - **Finance hub fixes** are being handled by Pratik in a separate chat. Known issues:
   - Section 75 is credited to the Consumer Rights Act 2015; it should be the Consumer Credit Act 1974.
   - Minimum payment figures don't match between the summary (3–5% or £25) and the quiz (£10 or 1–2%).
