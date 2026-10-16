@@ -1,13 +1,13 @@
 # A-level Study Hubs: handover notes
 
-Read this first if the conversation has been compacted or a new session is picking the work up. Last updated: 16 Oct 2026 (afternoon).
+Read this first if the conversation has been compacted or a new session is picking the work up. Last updated: 16 Oct 2026, 11:00.
 
 ## Golden rules
 
 1. **Pratik's Mac folders are the master copy** (table below). Claude's cloud workspace (`/home/claude/...`, `/mnt/user-data/...`) is temporary and gets wiped between sessions. Never rebuild from a cloud copy you didn't just fetch.
 2. **Before editing, fetch the current files from the Mac** with `device_stage_files`, or `device_list_dir` to check mtimes first. Edit the fetched copy, rebuild, then write back with `device_commit_files`, passing `expectedMtimeMs` so newer edits aren't overwritten.
 3. **One chat per repo at a time.** Two sessions working on the same repo left a stale `.git/HEAD.lock` on 16 Oct. If git says a lock file exists, check `pgrep -l git`, then run `rm -f .git/HEAD.lock .git/index.lock`.
-4. **Finance has its own context doc:** `~/Desktop/finance-hub/FINANCE_HUB_CONTEXT.md`. Read it before touching Finance.
+4. **Finance has its own context doc:** `~/Documents/Projects/finance-hub/FINANCE_HUB_CONTEXT.md`. Read it before touching Finance.
 5. **Pratik wants short answers** and fully literal, copy-paste terminal commands.
 
 ## What exists
@@ -20,13 +20,15 @@ Four revision sites plus a landing page. All are static, self-contained `index.h
 | Biology (AQA 7402) | https://aqa-alevel-biology.netlify.app/ | pratikpatel74/alevel-biology | ~/Documents/Projects/alevel-biology |
 | Chemistry (AQA 7405) | https://aqa-alevel-chemistry.netlify.app/ | pratikpatel74/alevel-chemistry | ~/Documents/Projects/alevel-chemistry |
 | Maths (AQA 7357) | https://aqa-alevel-maths.netlify.app/ | pratikpatel74/alevel-maths | ~/Documents/Projects/alevel-maths |
-| Finance (LIBF Unit 1) | https://alevel-finance-hub.netlify.app/ | pratikpatel74/finance-hub | ~/Desktop/finance-hub |
+| Finance (LIBF Unit 1) | https://alevel-finance-hub.netlify.app/ | pratikpatel74/finance-hub | ~/Documents/Projects/finance-hub |
 
 Size of each hub:
 - **Biology:** 31 topics, 682 questions, 12 required practicals.
 - **Chemistry:** 34 topics, 748 questions, 12 required practicals.
 - **Maths:** 35 topics, 770 questions, worked examples in every topic, no practicals.
 - **Finance:** 6 topics, 132 questions. It's an older, separate design with one HTML file per quiz and Word summaries. It was built in a different session.
+
+Separate project, not covered here: the Pre-Dentistry hub (repo `pratikpatel74/pre-dentistry-study-guide`, folder `~/Documents/Projects/pre-dentistry-study-guide`, https://pre-dentistry-hub.netlify.app/), built in the Finance style.
 
 ## How a hub is built
 
@@ -142,7 +144,8 @@ After deploying, the live URL can be checked with WebFetch, but it only sees the
   - All four hubs now auto-deploy on push.
   - Full accuracy read-through of Biology and Chemistry (see Accuracy notes).
   - Unified the three templates into one shared template and build script.
-  - Added SVG diagram support and 101 diagrams across the three hubs.
+  - Added SVG diagram support and 101 diagrams across the three hubs (40 first, then 61 more so every topic has one).
+  - **Deployed 16 Oct, ~10:50:** Biology `68db971`, Chemistry `290ca10`, Maths `cbec57d`, landing page repo `6eadea5`. All four repos clean after the push.
 - **Finance hub fixes** are being handled by Pratik in a separate chat. Known issues:
   - Section 75 is credited to the Consumer Rights Act 2015; it should be the Consumer Credit Act 1974.
   - Minimum payment figures don't match between the summary (3–5% or £25) and the quiz (£10 or 1–2%).
@@ -163,11 +166,11 @@ After deploying, the live URL can be checked with WebFetch, but it only sees the
 - Chemistry: https://claude.ai/artifact/TiYRgDe5fhexrSjJkG37MT
 - Maths: https://claude.ai/artifact/1wv8ifHF6zezkrLnacmwab
 
-These are previews only. The Netlify sites are the real ones. The previews were published before the "All subjects" link was added.
+These are previews only and out of date (published before the "All subjects" link, the shared template and the diagrams). The Netlify sites are the real ones; republish a preview only if Pratik asks.
 
 ## Possible next steps (only if Pratik asks)
 
-- **More diagrams:** a second diagram for the busiest topics (use `tools/diagrams`).
+- **More diagrams:** a second diagram for the busiest topics, or the four skipped Maths topics (use `tools/diagrams`).
 - **Practice questions:** add exam-style long-answer questions with mark schemes.
 - **Progress page:** add a page on the landing site summarising scores. This would need the scores in one place, because `localStorage` is per site.
 - **Finance redesign:** move Finance to the same design as the AQA hubs.
