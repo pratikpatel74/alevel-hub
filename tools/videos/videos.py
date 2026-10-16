@@ -1,0 +1,31 @@
+# n: [(youtube id, title, channel)]
+BIO = {
+ 1: [("ha_weShrOEU", "Enzymes required practical: the effect of a variable on the rate of reaction", "Miss Estruch")],
+ 2: [("e6LPXBhDT8Q", "Required Practical 2: how to prepare a root tip squash for mitosis", "Miss Estruch")],
+ 3: [("Uug6752svt8", "Required Practical 3: osmosis in potato and serial dilution", "Miss Estruch")],
+ 4: [("xnNpHDfLJv4", "Required Practical 4: effect of ethanol on membrane permeability", "Miss Estruch")],
+ 5: [("mI4pno0npCc", "Heart dissection: aim, equipment, method and results", "Miss Estruch")],
+ 6: [("cXh9FQny8Jc", "Required Practical 6: aseptic technique and inhibition zones", "Miss Estruch")],
+ 7: [("7iJzZ_tJVtI", "Chlorophyll chromatography and Rf values", "Miss Estruch")],
+ 8: [("Nql9FwKCslI", "Required Practical 8: DCPIP and dehydrogenase in photosynthesis", "Miss Estruch")],
+ 9: [("2D2tJNFJ0mM", "Respirometer: how to measure the rate of respiration", "Miss Estruch")],
+ 10: [("LG1cLm1jOG8", "Choice chamber practical with maggots or woodlice", "Miss Estruch")],
+ 11: [("1IQkbLE4mN0", "Required Practical 11: using a colorimeter to find glucose concentration", "Miss Estruch")],
+ 12: [("M2gfJQcYw-I", "Required Practical 12: random and systematic sampling with quadrats", "Miss Estruch")],
+}
+CHEM = {
+ 1: [("Xw-CgHO6ULs", "Required Practical 1a: making a standard solution", "The Chem Tutor"),
+     ("lAZcV81UAQk", "Required Practical 1b: acid–base titration", "Dr de Bruin's Classroom")],
+ 2: [("ND6uKJwqeGw", "Enthalpy change of neutralisation", "Malmesbury Education")],
+ 3: [("hW79t6OD93Y", "Sodium thiosulfate and HCl kinetics practical", "Tailored Tutors")],
+ 4: [("Z6525dhPdP4", "Required Practical 4: inorganic test-tube reactions", "Dr de Bruin's Classroom")],
+ 5: [("m1KqiMLo1Ak", "Required Practical 5: distillation", "Dr de Bruin's Classroom")],
+ 6: [("hLuRG3vBYTU", "Required Practical 6: organic test-tube reactions", "Dr de Bruin's Classroom")],
+ 7: [("tH8j4vnnSos", "Required Practical 7a: initial rate of reaction", "Dr de Bruin's Classroom"),
+     ("1v7fG6CZgD4", "Required Practical 7b: continuous monitoring of rate", "Dr de Bruin's Classroom")],
+ 8: [("aWVZ1ZfJ-RI", "Measuring the EMF of electrochemical cells", "St Peter's School")],
+ 9: [("lAdyTvkWVfc", "Required Practical 9: pH curves", "LPGS Chemistry")],
+ 10: [("qRdkoLu1nJ8", "Required Practical 10a and 10b: making and purifying an organic solid", "Mr Carver")],
+ 11: [("d0nywznpbzw", "Required Practical 11: transition metal test-tube reactions", "Dr de Bruin's Classroom")],
+ 12: [("97I3DXhV_xg", "Thin-layer chromatography (with timelapses)", "Mr Murray-Green")],
+}
