@@ -1,6 +1,14 @@
 # A-level Study Hubs: handover notes
 
-Read this first if the conversation has been compacted or a new session is picking the work up. Last updated: 15 Oct 2026.
+Read this first if the conversation has been compacted or a new session is picking the work up. Last updated: 16 Oct 2026.
+
+## Golden rules
+
+1. **Pratik's Mac folders are the master copy** (table below). Claude's cloud workspace (`/home/claude/...`, `/mnt/user-data/...`) is temporary and gets wiped between sessions. Never rebuild from a cloud copy you didn't just fetch.
+2. **Before editing, fetch the current files from the Mac** with `device_stage_files`, or `device_list_dir` to check mtimes first. Edit the fetched copy, rebuild, then write back with `device_commit_files`, passing `expectedMtimeMs` so newer edits aren't overwritten.
+3. **One chat per repo at a time.** Two sessions working on the same repo left a stale `.git/HEAD.lock` on 16 Oct. If git says a lock file exists, check `pgrep -l git`, then run `rm -f .git/HEAD.lock .git/index.lock`.
+4. **Finance has its own context doc:** `~/Desktop/finance-hub/FINANCE_HUB_CONTEXT.md`. Read it before touching Finance.
+5. **Pratik wants short answers** and fully literal, copy-paste terminal commands.
 
 ## What exists
 
@@ -93,8 +101,8 @@ On the hub page, every hub's top bar has a "← All subjects" link to the landin
 
 Claude **can't push to Pratik's GitHub from the cloud session**, because pushes are refused for this account. The working method is:
 
-1. Build in the cloud workspace, and stage outputs under `/mnt/user-data/outputs/alevel-<subject>/`.
-2. Write the files to the Mac with the device tools (`device_commit_files` into `~/Documents/Projects/...`). This only works when the Mac is linked and online; `~/Documents/Projects` has been granted before.
+1. Fetch the repo's `src/` (and `index.html`) from the Mac with `device_stage_files`. Files land in `/mnt/user-data/uploads/<folder>/`. Copy them into `/mnt/user-data/outputs/alevel-<subject>/` keeping the repo layout, then edit and run `python3 build.py` inside `src/`.
+2. Write the changed files to the Mac with the device tools (`device_commit_files` into `~/Documents/Projects/...`). This only works when the Mac is linked and online; `~/Documents/Projects` has been granted before.
 3. If the Mac is offline, send a zip with SendUserFile instead.
 4. Give Pratik copy-paste commands. He prefers fully literal CLI commands.
 
@@ -105,14 +113,19 @@ git commit -m "<message>"
 git push
 ```
 
-Netlify picks up the push automatically. Netlify sites were connected through the Netlify web portal.
+Netlify picks up the push automatically for all five sites. They were connected through the Netlify web portal, and Finance was linked for auto-deploy on 16 Oct. If a push doesn't deploy, check that the site is linked under Site configuration → Build & deploy → Continuous deployment.
 
-After deploying, verify the live URL with WebFetch.
+After deploying, the live URL can be checked with WebFetch, but it only sees the page title, because the content is built by JavaScript. The cloud shell can't reach netlify.app (the proxy refuses the connection). For real checks, render the local `index.html` with Playwright (Chromium is preinstalled; use `devices['iPhone 13']` for mobile), or ask Pratik to check on his phone.
 
-## Current status (15 Oct 2026, 20:30)
+## Status log
 
 - **Live:** all four hubs and the landing page are deployed and verified.
 - **Deployed 15 Oct, 20:26:** the "← All subjects" link on the Biology, Chemistry and Maths hubs, the Maths hero-text fix (it now mentions worked examples instead of required practicals), and this handover file.
+- **16 Oct:**
+  - Added the mobile viewport fix to Biology, Chemistry and Maths.
+  - Added a "← All subjects" link to the Finance hub top bar.
+  - Linked Finance to GitHub for auto-deploy in Netlify.
+  - All four hubs now auto-deploy on push.
 - **Finance hub fixes** are being handled by Pratik in a separate chat. Known issues:
   - Section 75 is credited to the Consumer Rights Act 2015; it should be the Consumer Credit Act 1974.
   - Minimum payment figures don't match between the summary (3–5% or £25) and the quiz (£10 or 1–2%).
@@ -122,6 +135,9 @@ After deploying, verify the live URL with WebFetch.
 
 - All content is original. It is written against the AQA specifications, not copied from paid resources.
 - An automated check compared each answer key with its explanation. The flagged questions were reviewed by hand, and the Maths numerical answers were recalculated.
+- **Full read-through, 16 Oct:** every Biology and Chemistry question, summary, pitfall and practical was read and calculations re-run. Fixes:
+  - Chemistry: two questions had a second correct option (ethyl ethanoate NMR ratio "3:3:2"; butane also has 2 ¹³C peaks). Wrong C₃H₈ precise mass (44.0626 → 44.0624). Wrong argon explanation (it has more electrons, not fewer; the point is it's monatomic). Wording fixes in u01, u03 and u06.
+  - Biology: transpiration question didn't match its answers. Clearer monoclonal antibody answer. Codominance example changed to roan cattle.
 - The content hasn't had expert review. Pratik was advised to spot-check topics against a textbook or teacher.
 
 ## Claude preview artifacts (private, claude.ai)
